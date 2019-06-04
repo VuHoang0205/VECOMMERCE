@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">VECOMMERCE</string>
+    <string name="no_account">No account yet? Create one</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="copyright">Copyright @ 2019 by Vuhoang020595@gmail.com</string>
+    <string name="a_account">Already a member? Login</string>
+    <string name="re_enter_password">Re-enter Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="address">Address</string>
+    <string name="name">Name</string>
+    <string name="des_forgot_password">You will receive an email with instructions on resetting password.</string>
+    <string name="go_to_sigin">Go back to Sign In.</string>
+    <string name="reset_password">Reset password</string>
+    <string name="forgot_password">Forgot password?</string>
+</resources>
