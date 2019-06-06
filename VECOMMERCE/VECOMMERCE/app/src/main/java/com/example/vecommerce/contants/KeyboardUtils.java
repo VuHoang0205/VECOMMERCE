@@ -1,4 +1,4 @@
-package org.atmarkcafe.otocon.utils;
+package com.example.vecommerce.contants;
 
 import android.app.Activity;
 import android.content.Context;
@@ -50,11 +50,4 @@ public class KeyboardUtils {
         } catch (Exception e) {
         }
     }
-    public static void hideKeyboard(View view) {
-        if (view != null) {
-            InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
-
 }

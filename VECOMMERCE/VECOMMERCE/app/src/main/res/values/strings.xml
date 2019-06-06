@@ -15,4 +15,8 @@
     <string name="go_to_sigin">Go back to Sign In.</string>
     <string name="reset_password">Reset password</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="title_dialog">Thông Báo</string>
+    <string name="message_dialog">Quá trình đăng ký tài khoản không thành công vui lòng kiểm tra lại!</string>
+    <string name="message_success_dialog">Đăng ký tài khoản thành công vui lòng vào Gmail xác nhận để đăng nhập!</string>
+
 </resources>

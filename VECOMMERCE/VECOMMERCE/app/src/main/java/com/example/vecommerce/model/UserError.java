@@ -1,17 +1,24 @@
 package com.example.vecommerce.model;
 
-public class User {
+public class UserError {
     private String name = "";
     private String address = "";
     private String email = "";
     private String mobileNumber = "";
     private String password = "";
     private String rePassword = "";
+    public boolean isError;
+    public boolean errorName;
+    public boolean errorAddress;
+    public boolean errorEmail;
+    public boolean errorMobileNumber;
+    public boolean errorPassword;
+    public boolean errorRepassowrd;
 
-    public User() {
+    public UserError() {
     }
 
-    public User(String email, String password) {
+    public UserError(String email, String password) {
         this.email = email;
         this.password = password;
     }

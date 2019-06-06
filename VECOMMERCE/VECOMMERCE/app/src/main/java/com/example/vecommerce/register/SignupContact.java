@@ -1,19 +1,23 @@
-package com.example.vecommerce.login;
+package com.example.vecommerce.register;
 
 import com.example.vecommerce.model.User;
+import com.example.vecommerce.model.UserError;
 
-public interface LoginContact {
+public interface SignupContact {
 
-    interface LoginView {
+    interface SignUpView {
 
-        void showProgress(boolean isShow);
+        void onShowProgress(boolean isShow);
 
-        void success();
+        void onSuccess();
 
-        void showErorrMessage(String title, String message);
+        void onShowErorrMessage(UserError userError);
+
+        void onErrorFirebase(String msg);
+
     }
 
-    interface LoginPresenter {
-        void onLogin(User user);
+    interface SignUpPresenter {
+        void SignUpUser(User user);
     }
 }
