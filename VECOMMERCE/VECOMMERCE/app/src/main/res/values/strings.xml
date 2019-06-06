@@ -18,5 +18,6 @@
     <string name="title_dialog">Thông Báo</string>
     <string name="message_dialog">Quá trình đăng ký tài khoản không thành công vui lòng kiểm tra lại!</string>
     <string name="message_success_dialog">Đăng ký tài khoản thành công vui lòng vào Gmail xác nhận để đăng nhập!</string>
+    <string name="message_success_dialog_reset">Vui lòng vào Gmail để xác nhận lại mật khẩu!</string>
 
 </resources>

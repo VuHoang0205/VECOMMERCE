@@ -115,5 +115,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public void setOtoconFragmentListener(BaseFragmentListener baseFragmentListener) {
         this.baseFragmentListener = baseFragmentListener;
     }
-
+    public void callParentMethod(){
+        getActivity().onBackPressed();
+    }
 }

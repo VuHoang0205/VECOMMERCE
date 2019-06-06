@@ -78,7 +78,17 @@ public class SignInFragment extends BaseFragment<FragmentSigninBinding> implemen
         btnForgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addFragmentBackStack(R.id.frameContainer, new ForgotFragment(), ForgotFragment.CLASS_NAME);
+                ForgotFragment forgotFragment = new ForgotFragment();
+                forgotFragment.setOtoconFragmentListener(new BaseFragmentListener() {
+                    @Override
+                    public void onHandlerReult(int status, Bundle extras) {
+                        if (status == 2) {
+                            user = (User) extras.getSerializable(KeyUtils.USER);
+                            viewDataBinding.setUser(user);
+                        }
+                    }
+                });
+                addFragmentBackStack(R.id.frameContainer, forgotFragment, ForgotFragment.CLASS_NAME);
             }
         });
 
