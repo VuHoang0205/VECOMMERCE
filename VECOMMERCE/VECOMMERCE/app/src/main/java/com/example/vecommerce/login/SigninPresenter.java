@@ -7,6 +7,7 @@ import android.util.Log;
 import com.example.vecommerce.contants.ValidateUtils;
 import com.example.vecommerce.model.User;
 import com.example.vecommerce.model.UserError;
+import com.example.vecommerce.register.SignupFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseNetworkException;
@@ -18,6 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SigninPresenter implements SigninContact.LoginPresenter {
+
+    public static final String CLASS_NAME = SignInFragment.class.getSimpleName();
+
     private SignInFragment view;
     private Context context;
     private UserError userError;

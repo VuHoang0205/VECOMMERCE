@@ -19,5 +19,25 @@
     <string name="message_dialog">Quá trình đăng ký tài khoản không thành công vui lòng kiểm tra lại!</string>
     <string name="message_success_dialog">Đăng ký tài khoản thành công vui lòng vào Gmail xác nhận để đăng nhập!</string>
     <string name="message_success_dialog_reset">Vui lòng vào Gmail để xác nhận lại mật khẩu!</string>
+    <string name="title_activity_main_fragment">MainFragment</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_search">Search</string>
+
+
+    <string name="menu_mall">My Mall</string>
+    <string name="menu_oders">My Oders</string>
+    <string name="menu_rewards">My Rewards</string>
+    <string name="menu_cart">My Cart</string>
+    <string name="menu_wishlist">My Wishlist</string>
+    <string name="menu_acoount">My Account</string>
+    <string name="menu_logout">Sign Out</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="status_signin">Not sign in</string>
+    <string name="home">Home</string>
 
 </resources>

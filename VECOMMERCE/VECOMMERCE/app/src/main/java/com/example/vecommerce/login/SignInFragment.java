@@ -1,15 +1,16 @@
 package com.example.vecommerce.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.vecommerce.view.MainActivity;
 import com.example.vecommerce.R;
 import com.example.vecommerce.base.BaseDialog;
 import com.example.vecommerce.base.BaseFragment;
-import com.example.vecommerce.base.IOnclickDialog;
 import com.example.vecommerce.contants.KeyUtils;
 import com.example.vecommerce.databinding.FragmentSigninBinding;
 import com.example.vecommerce.forgotpassword.ForgotFragment;
@@ -18,8 +19,6 @@ import com.example.vecommerce.model.UserError;
 import com.example.vecommerce.register.SignupFragment;
 import com.jpardogo.android.googleprogressbar.library.FoldingCirclesDrawable;
 import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
-
-import java.io.Serializable;
 
 public class SignInFragment extends BaseFragment<FragmentSigninBinding> implements SigninContact.LoginView {
 
@@ -126,12 +125,9 @@ public class SignInFragment extends BaseFragment<FragmentSigninBinding> implemen
     public void onSuccess() {
         enableDisableView(constraintLayout, true);
         progressBar.setVisibility(View.GONE);
-        new BaseDialog(getActivity()).showDialog(getContext().getString(R.string.title_dialog), getContext().getString(R.string.message_success_dialog), new IOnclickDialog() {
-            @Override
-            public void onClickButton() {
-
-            }
-        });
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     @Override

@@ -27,8 +27,27 @@
         <item name="android:colorButtonNormal">@color/primary_darker</item>
     </style>
 
+    <style name="AppTheme.Main" parent="Theme.AppCompat.NoActionBar">
+
+        // Color toolbar
+        <item name="colorPrimary">@color/blue</item>
+        // Color statusbar
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+
+    </style>
+
 
     <style name="TextLabel" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">18sp</item>
     </style>
+
+    <style name="AppTheme.Dark.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.Dark.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

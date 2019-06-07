@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
     implementation 'com.github.Shashank02051997:FancyAlertDialog-Android:0.1'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
     implementation 'com.jpardogo.googleprogressbar:library:1.1.0'
     implementation 'com.google.firebase:firebase-database:17.0.0'
     implementation 'com.google.firebase:firebase-firestore:19.0.2'
