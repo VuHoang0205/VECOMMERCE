@@ -1,17 +1,25 @@
 package com.example.vecommerce.home;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.GridView;
+import android.widget.ImageView;
 
 
 import com.example.vecommerce.R;
 import com.example.vecommerce.adapter.Categoies;
 import com.example.vecommerce.adapter.CategorieAdapter;
+import com.example.vecommerce.adapter.GridProductAdapter;
+import com.example.vecommerce.adapter.ProductHorizontalAdapter;
+import com.example.vecommerce.adapter.ProductHorizontalModel;
 import com.example.vecommerce.adapter.SliderAdapter;
 import com.example.vecommerce.adapter.SliderModel;
 import com.example.vecommerce.base.BaseFragment;
@@ -27,30 +35,64 @@ import java.util.TimerTask;
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
 
     public static final String CLASS_NAME = HomeFragment.class.getSimpleName();
+
     private RecyclerView recyclerView;
     private CategorieAdapter categorieAdapter;
     private List<Categoies> categoies = DataUtils.getCategories();
+
+    private RecyclerView recyclerViewHorizontal;
+    private ProductHorizontalAdapter productHorizontalAdapter;
+    private List<ProductHorizontalModel> productList = DataUtils.getProductList();
+
+    private RecyclerView gridRecyclerView;
+    private GridProductAdapter gridProductAdapter;
+    private List<ProductHorizontalModel> productGridList = DataUtils.getProductList();
 
     private ViewPager viewPager;
     private List<SliderModel> sliderList = DataUtils.getSliderList();
     private SliderAdapter sliderAdapter;
 
+
     private int currentPage = 2;
     private Timer timer;
 
+    private ConstraintLayout tripLayout;
+    private ImageView tripImage;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onInitComponents() {
         recyclerView = getView().findViewById(R.id.recyclerCategory);
         viewPager = getView().findViewById(R.id.viewPager);
+        recyclerViewHorizontal = getView().findViewById(R.id.rcvHorizontal);
+        gridRecyclerView = getView().findViewById(R.id.grid_product);
+
+        // Trip
+        tripImage = getView().findViewById(R.id.trip_image);
+        tripLayout = getView().findViewById(R.id.mtrip_layout);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         categorieAdapter = new CategorieAdapter(categoies);
         recyclerView.setAdapter(categorieAdapter);
 
+        recyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        productHorizontalAdapter = new ProductHorizontalAdapter(productList);
+        recyclerViewHorizontal.setAdapter(productHorizontalAdapter);
+
         // pager
         sliderAdapter = new SliderAdapter(sliderList);
+
+        //trip
+        tripImage.setImageResource(R.drawable.trip_banner);
+        tripLayout.setBackgroundColor(Color.BLACK);
+
+        // grid
+        gridRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        gridProductAdapter = new GridProductAdapter(productGridList);
+        gridRecyclerView.setAdapter(gridProductAdapter);
+
+
+        viewPager.setCurrentItem(currentPage);
 
         // Config xem trc cac slider sau 1 phan
         viewPager.setClipToPadding(false);
@@ -83,7 +125,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
             public boolean onTouch(View v, MotionEvent event) {
                 pageLooper();
                 stopBanner();
-                if (event.getAction()==MotionEvent.ACTION_UP){
+                if (event.getAction() == MotionEvent.ACTION_UP) {
                     startBanner();
                 }
                 return false;
@@ -138,7 +180,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
         }, 2500, 1500);
     }
 
-    private void stopBanner(){
+    private void stopBanner() {
         timer.cancel();
     }
 }
