@@ -32,181 +32,220 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <ScrollView
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/appbar">
 
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/viewPagerProduct"
+                            android:layout_width="0dp"
+                            android:layout_height="250dp"
+                            android:layout_marginTop="24dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <android.support.design.widget.TabLayout
+                            android:id="@+id/viewpager_indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="?actionBarSize"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/viewPagerProduct"
+                            app:tabBackground="@drawable/dot_select"
+                            app:tabRippleColor="@null" />
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/btnLike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:clickable="true"
+                            android:src="@drawable/ic_like"
+                            app:layout_constraintEnd_toEndOf="@id/viewPagerProduct"
+                            app:layout_constraintTop_toTopOf="@id/viewPagerProduct" />
+
+                        <TextView
+                            android:id="@+id/product_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="Product Title"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/viewpager_indicator" />
+
+                        <LinearLayout
+                            android:id="@+id/liearLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/slider_background"
+                            android:backgroundTint="@color/green"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/product_title">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="4.5"
+                                android:textColor="@color/white" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:src="@drawable/ic_ranking" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/total_ranking"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="total ranking"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="@id/liearLayout"
+                            app:layout_constraintStart_toEndOf="@id/liearLayout"
+                            app:layout_constraintTop_toTopOf="@id/liearLayout" />
+
+                        <TextView
+                            android:id="@+id/product_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="bottom"
+                            android:text="Rs:4999.9"
+                            android:textColor="@color/black"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="@id/liearLayout"
+                            app:layout_constraintTop_toBottomOf="@id/liearLayout" />
+
+                        <TextView
+                            android:id="@+id/product_price_cutted"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Rs:299.9"
+                            android:textColor="#655E5E"
+                            android:textSize="14sp"
+                            app:layout_constraintBottom_toBottomOf="@id/product_price"
+                            app:layout_constraintStart_toEndOf="@id/product_price"
+                            app:layout_constraintTop_toTopOf="@id/product_price" />
+
+                        <View
+                            android:id="@+id/view_divider"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="8dp"
+                            android:background="#655E5E"
+                            app:layout_constraintBottom_toBottomOf="@id/product_price_cutted"
+                            app:layout_constraintEnd_toEndOf="@id/product_price_cutted"
+                            app:layout_constraintStart_toStartOf="@id/product_price_cutted"
+                            app:layout_constraintTop_toTopOf="@id/product_price_cutted" />
+
+                        <LinearLayout
+                            android:id="@+id/liearLayout2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="#FF3030"
+                            android:elevation="3dp"
+                            android:gravity="right|center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/product_price">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Check Price after Coupen redempition"
+                                android:textAlignment="center"
+                                android:textColor="@color/white" />
+
+                            <Button
+                                android:layout_width="75dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="right"
+                                android:background="@drawable/boder_background"
+                                android:elevation="3dp"
+                                android:text="Read me"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <include
+                            android:id="@+id/graldeint"
+                            layout="@layout/reward_layout_product"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintTop_toBottomOf="@id/liearLayout" />
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.design.widget.CollapsingToolbarLayout>
+            </android.support.design.widget.AppBarLayout>
+
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewPagerProduct"
-                    android:layout_width="0dp"
-                    android:layout_height="250dp"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/viewpager_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="?actionBarSize"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewPagerProduct"
-                    app:tabBackground="@drawable/dot_select"
-                    app:tabRippleColor="@null" />
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/btnLike"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:clickable="true"
-                    android:src="@drawable/ic_like"
-                    app:layout_constraintEnd_toEndOf="@id/viewPagerProduct"
-                    app:layout_constraintTop_toTopOf="@id/viewPagerProduct" />
-
-                <TextView
-                    android:id="@+id/product_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Product Title"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewpager_indicator" />
-
-                <LinearLayout
-                    android:id="@+id/liearLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/slider_background"
-                    android:backgroundTint="@color/green"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/product_title">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="4.5"
-                        android:textColor="@color/white" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:src="@drawable/ic_ranking" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/total_ranking"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:text="total ranking"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/liearLayout"
-                    app:layout_constraintStart_toEndOf="@id/liearLayout"
-                    app:layout_constraintTop_toTopOf="@id/liearLayout" />
-
-                <TextView
-                    android:id="@+id/product_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="bottom"
-                    android:text="Rs:4999.9"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@id/liearLayout"
-                    app:layout_constraintTop_toBottomOf="@id/liearLayout" />
-
-                <TextView
-                    android:id="@+id/product_price_cutted"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Rs:299.9"
-                    android:textColor="#655E5E"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@id/product_price"
-                    app:layout_constraintStart_toEndOf="@id/product_price"
-                    app:layout_constraintTop_toTopOf="@id/product_price" />
-
-                <View
-                    android:id="@+id/view_divider"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="8dp"
-                    android:background="#655E5E"
-                    app:layout_constraintBottom_toBottomOf="@id/product_price_cutted"
-                    app:layout_constraintEnd_toEndOf="@id/product_price_cutted"
-                    app:layout_constraintStart_toStartOf="@id/product_price_cutted"
-                    app:layout_constraintTop_toTopOf="@id/product_price_cutted" />
-
-                <LinearLayout
-                    android:elevation="3dp"
-                    android:id="@+id/liearLayout2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="#FF3030"
-                    android:gravity="right|center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/product_price">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Check Price after Coupen redempition"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:layout_width="75dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="right"
-                        android:background="@drawable/boder_background"
-                        android:elevation="3dp"
-                        android:text="Read me"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <include
-                    android:id="@+id/graldeint"
-                    layout="@layout/reward_layout_product"
+                <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintTop_toBottomOf="@id/liearLayout2" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <include
-                    layout="@layout/product_description_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/graldeint" />
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <include
+                            android:id="@+id/product_description"
+                            layout="@layout/product_description_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <include
+                            layout="@layout/product_detail_only_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/product_description" />
+                    </android.support.constraint.ConstraintLayout>
+
+                </ScrollView>
+
             </android.support.constraint.ConstraintLayout>
-        </ScrollView>
-
+        </android.support.design.widget.CoordinatorLayout>
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -55,8 +55,12 @@ public class DataUtils {
 
     public static List<ProductSpecificationModel> getProductSpecfiition() {
         List<ProductSpecificationModel> productList = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
-            productList.add(new ProductSpecificationModel("RAM", "4GB"));
+        for (int i = 0; i < 16; i++) {
+            if (i % 5 == 0) {
+                productList.add(new ProductSpecificationModel(0, "Gerenal"));
+            } else {
+                productList.add(new ProductSpecificationModel(1, "RAM", "4GB"));
+            }
         }
         return productList;
     }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="64dp"
+    android:elevation="3dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4d4d4d"
+        android:padding="16dp"
+        android:text="Product Detail"
+        android:textColor="#9c9c9c"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Xiaomi được đồng sáng lập bởi tám đối tác vào ngày 6 tháng 4 năm 2010. Trong vòng đầu tiên của tài trợ, các nhà đầu tư bao gồm Temasek Holdings, một công ty đầu tư của chính phủ Singapore, các quỹ đầu tư mạo hiểm IDG Trung Quốc Capital và Qiming Venture Partners, và phát triển bộ vi xử lý di động Qualcomm. Vào ngày 16 tháng 8 năm 2010, Xiaomi chính thức ra mắt phần mềm MIUI dựa trên Android đầu tiên Điện thoại thông minh Xiaomi Mi1 được ra mắt vào tháng 8 năm 2011 Nó được chạy trên phần mềm MIUI của Xiaomi cơ bản dựa trên nền Android, TouchWiz của Samsung và iOS của Apple. Thiết bị này cũng được xuất xưởng với hệ điều hành Android."
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/textView1" />
+</android.support.constraint.ConstraintLayout>

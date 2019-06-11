@@ -10,7 +10,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -22,21 +25,23 @@
                 android:layout_weight="1"
                 android:text="@string/menu_logout"
                 android:textColor="@color/black"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
-
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="@string/menu_logout"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="12sp" />
         </LinearLayout>
+
         <View
-            android:background="#d4d4d4"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp"
+            android:background="#d4d4d4"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
     </android.support.constraint.ConstraintLayout>
 </layout>
