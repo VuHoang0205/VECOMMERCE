@@ -12,7 +12,9 @@
         android:theme="@style/AppTheme.Dark"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".view.MainActivity" android:theme="@style/AppTheme.Main">
+        <activity
+            android:name=".view.MainActivity"
+            android:theme="@style/AppTheme.Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

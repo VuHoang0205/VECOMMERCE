@@ -37,6 +37,16 @@
 
     </style>
 
+    <style name="AppTheme.Product.Detail" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        // Color toolbar
+        <item name="colorPrimary">@color/blue</item>
+        // Color statusbar
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+
+    </style>
+
 
     <style name="TextLabel" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">18sp</item>

@@ -4,6 +4,8 @@ import com.example.vecommerce.R;
 import com.example.vecommerce.adapter.Categoies;
 import com.example.vecommerce.adapter.ProductHorizontalModel;
 import com.example.vecommerce.adapter.SliderModel;
+import com.example.vecommerce.adapter.productdetail.ProductSpecificationModel;
+import com.example.vecommerce.productdetail.ProductSpecificationFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,24 @@ public class DataUtils {
         for (int i = 0; i < 30; i++) {
             productList.add(new ProductHorizontalModel(R.drawable.image_xoami, "Xoami 8 Lite", "Siêu phẩm 2019", "4950"));
 
+        }
+        return productList;
+    }
+
+    public static List<Integer> getImageList() {
+        List<Integer> productList = new ArrayList<>();
+        productList.add(R.drawable.image_xoami);
+        productList.add(R.drawable.image_xoami);
+        productList.add(R.drawable.image_xoami);
+        productList.add(R.drawable.image_xoami);
+        productList.add(R.drawable.image_xoami);
+        return productList;
+    }
+
+    public static List<ProductSpecificationModel> getProductSpecfiition() {
+        List<ProductSpecificationModel> productList = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            productList.add(new ProductSpecificationModel("RAM", "4GB"));
         }
         return productList;
     }

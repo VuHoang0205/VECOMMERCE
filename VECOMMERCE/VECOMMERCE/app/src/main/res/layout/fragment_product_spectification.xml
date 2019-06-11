@@ -5,21 +5,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_product_description"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleSpecification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:textColor="@color/black"
-            android:text="Are you looking to create your own music player app? or have you already started and want to implement features you’re not sure how?
-
-If so, here’s a list of the top open source music player apps available for Android.
-
-The best thing about these open source apps is that you can download, dissect, copy, and use the code from them for free (please check the license section, first, though)!
-
-Let’s get started with the list."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </layout>

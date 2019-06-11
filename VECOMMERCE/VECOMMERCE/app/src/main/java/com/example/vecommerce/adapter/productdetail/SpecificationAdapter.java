@@ -1,4 +1,4 @@
-package com.example.vecommerce.adapter;
+package com.example.vecommerce.adapter.productdetail;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,54 +9,50 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vecommerce.R;
+import com.example.vecommerce.adapter.Categoies;
+import com.example.vecommerce.adapter.IRecyclerviewItemOnlick;
 
 import java.util.List;
 
-public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.ViewHolder> {
+public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdapter.ViewHolder> {
 
-    List<Categoies> categoies;
-    private IRecyclerviewItemOnlick recyclerviewItemOnlick;
+    List<ProductSpecificationModel> specificationModels;
 
-    public CategorieAdapter(List<Categoies> categoies, IRecyclerviewItemOnlick iRecyclerviewItemOnlick) {
-        this.categoies = categoies;
-        this.recyclerviewItemOnlick = iRecyclerviewItemOnlick;
+    public SpecificationAdapter(List<ProductSpecificationModel> specificationModels) {
+        this.specificationModels = specificationModels;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_category, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_product_description, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Categoies categoie = categoies.get(i);
+        ProductSpecificationModel specificationModel = specificationModels.get(i);
+        viewHolder.name.setText(specificationModel.getFeatureName());
+        viewHolder.value.setText(specificationModel.getFeatureValue());
 
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recyclerviewItemOnlick.onClickItem(null);
-            }
-        });
 
     }
 
     @Override
     public int getItemCount() {
-        return categoies.size();
+        return specificationModels.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView icon;
         TextView name;
+        TextView value;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            icon = itemView.findViewById(R.id.ivIcon);
-            name = itemView.findViewById(R.id.tvName);
+            name = itemView.findViewById(R.id.textView);
+            value = itemView.findViewById(R.id.textView1);
         }
     }
 }

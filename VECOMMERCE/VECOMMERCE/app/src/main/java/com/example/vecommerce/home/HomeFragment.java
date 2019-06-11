@@ -2,6 +2,7 @@ package com.example.vecommerce.home;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.ViewPager;
@@ -10,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 
@@ -18,6 +18,7 @@ import com.example.vecommerce.R;
 import com.example.vecommerce.adapter.Categoies;
 import com.example.vecommerce.adapter.CategorieAdapter;
 import com.example.vecommerce.adapter.GridProductAdapter;
+import com.example.vecommerce.adapter.IRecyclerviewItemOnlick;
 import com.example.vecommerce.adapter.ProductHorizontalAdapter;
 import com.example.vecommerce.adapter.ProductHorizontalModel;
 import com.example.vecommerce.adapter.SliderAdapter;
@@ -25,6 +26,7 @@ import com.example.vecommerce.adapter.SliderModel;
 import com.example.vecommerce.base.BaseFragment;
 import com.example.vecommerce.contants.DataUtils;
 import com.example.vecommerce.databinding.FragmentHomeBinding;
+import com.example.vecommerce.productdetail.ProductdetailFragment;
 
 
 import java.util.List;
@@ -32,7 +34,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
+public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements IRecyclerviewItemOnlick {
 
     public static final String CLASS_NAME = HomeFragment.class.getSimpleName();
 
@@ -72,7 +74,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
         tripLayout = getView().findViewById(R.id.mtrip_layout);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        categorieAdapter = new CategorieAdapter(categoies);
+        categorieAdapter = new CategorieAdapter(categoies, this);
         recyclerView.setAdapter(categorieAdapter);
 
         recyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -182,5 +184,11 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
 
     private void stopBanner() {
         timer.cancel();
+    }
+
+    @Override
+    public void onClickItem(Bundle bundle) {
+       replaceAddBackStack(R.id.container_drawer, new ProductdetailFragment(), HomeFragment.CLASS_NAME);
+//        startActivity(new Intent(getActivity(), Main2Activity.class));
     }
 }

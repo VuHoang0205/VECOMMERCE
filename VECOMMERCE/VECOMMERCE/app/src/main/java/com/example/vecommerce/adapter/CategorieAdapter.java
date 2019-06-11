@@ -15,9 +15,11 @@ import java.util.List;
 public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.ViewHolder> {
 
     List<Categoies> categoies;
+    private IRecyclerviewItemOnlick recyclerviewItemOnlick;
 
-    public CategorieAdapter(List<Categoies> categoies) {
+    public CategorieAdapter(List<Categoies> categoies, IRecyclerviewItemOnlick iRecyclerviewItemOnlick) {
         this.categoies = categoies;
+        this.recyclerviewItemOnlick = iRecyclerviewItemOnlick;
     }
 
     @NonNull
@@ -30,6 +32,13 @@ public class CategorieAdapter extends RecyclerView.Adapter<CategorieAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Categoies categoie = categoies.get(i);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerviewItemOnlick.onClickItem(null);
+            }
+        });
 
     }
 
