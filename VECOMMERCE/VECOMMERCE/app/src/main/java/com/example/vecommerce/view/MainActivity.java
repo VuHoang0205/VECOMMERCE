@@ -1,11 +1,9 @@
 package com.example.vecommerce.view;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
@@ -19,9 +17,14 @@ import android.widget.Toast;
 
 import com.example.vecommerce.R;
 import com.example.vecommerce.home.HomeFragment;
+import com.example.vecommerce.mycart.MyCartFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private int isQuit = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,30 +41,40 @@ public class MainActivity extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 //        });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         navigationView.getMenu().getItem(0).setChecked(true);
-        drawer.addDrawerListener(toggle);
+        drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
         // add fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.container_main, new HomeFragment())
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .addToBackStack(HomeFragment.CLASS_NAME).commit();
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right).commit();
 
     }
 
     @Override
     public void onBackPressed() {
+        isQuit++;
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (isQuit == 2) {
+                super.onBackPressed();
+            } else {
+                Toast.makeText(this, "Vui lòng bấm Back một lần nữa để thoát!", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isQuit = 0;
+                    }
+                }, 3000);
+            }
         }
     }
 
@@ -89,6 +102,11 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         if (id == R.id.action_cart) {
+            // add fragment
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.container_drawer, new MyCartFragment())
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .addToBackStack(MyCartFragment.CLASS_NAME).commit();
             return true;
         }
 
@@ -108,6 +126,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_reward) {
 
         } else if (id == R.id.nav_cart) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.container_drawer, new MyCartFragment())
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
+                    .addToBackStack(MyCartFragment.CLASS_NAME).commit();
 
         } else if (id == R.id.nav_wishlist) {
 
@@ -119,4 +141,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

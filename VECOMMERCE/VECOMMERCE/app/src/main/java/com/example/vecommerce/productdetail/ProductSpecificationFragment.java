@@ -3,6 +3,7 @@ package com.example.vecommerce.productdetail;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.example.vecommerce.R;
 import com.example.vecommerce.adapter.productdetail.ProductSpecificationModel;
@@ -26,6 +27,7 @@ public class ProductSpecificationFragment extends BaseFragment<FragmentProductSp
 
         specificationAdapter = new SpecificationAdapter(specificationModels);
         recyclerView.setAdapter(specificationAdapter);
+
     }
 
     @Override

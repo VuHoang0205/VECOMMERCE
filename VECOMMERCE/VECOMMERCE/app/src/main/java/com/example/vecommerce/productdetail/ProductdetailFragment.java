@@ -13,6 +13,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -22,6 +24,7 @@ import com.example.vecommerce.adapter.productdetail.ProductImageAdapter;
 import com.example.vecommerce.base.BaseFragment;
 import com.example.vecommerce.contants.DataUtils;
 import com.example.vecommerce.databinding.FragmentProductDetailBinding;
+import com.example.vecommerce.mycart.MyCartFragment;
 
 import java.util.List;
 
@@ -36,6 +39,7 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
     private boolean isLike;
     private ViewPager viewPagerDetail;
     private TabLayout tabDetail;
+    private LinearLayout linearLayout;
 
     @Override
     protected void onInitComponents() {
@@ -45,6 +49,7 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
         btnLike = getView().findViewById(R.id.btnLike);
         viewPagerDetail = getView().findViewById(R.id.viewpagerDescription);
         tabDetail = getView().findViewById(R.id.tabDescription);
+        linearLayout = getView().findViewById(R.id.linearLayoutRating);
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -75,10 +80,39 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
             }
         });
 
+        // Ratingbar
+
+        for (int i = 0; i < linearLayout.getChildCount(); i++) {
+            final int starPosition = i;
+            linearLayout.getChildAt(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    settingRatingbar(starPosition);
+                }
+            });
+        }
+
+    }
+
+    private void settingRatingbar(int pos) {
+        for (int i = 0; i < linearLayout.getChildCount(); i++) {
+            ImageView starBtn = (ImageView) linearLayout.getChildAt(i);
+            starBtn.setImageTintList(ColorStateList.valueOf(Color.parseColor("#bebebe")));
+            if (i <= pos) {
+                starBtn.setImageTintList(ColorStateList.valueOf(Color.parseColor("#ffbb00")));
+            }
+        }
     }
 
     @Override
     protected void onClickAction() {
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackStack();
+            }
+        });
 
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,9 +120,11 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
                 if (isLike) {
                     isLike = false;
                     btnLike.setImageResource(R.drawable.ic_unlike);
+                    btnLike.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
                 } else {
                     isLike = true;
                     btnLike.setImageResource(R.drawable.ic_like);
+                    btnLike.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFEE5F5F")));
 
                 }
             }
@@ -111,6 +147,7 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
         inflater.inflate(R.menu.main_product_detail, menu);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -126,6 +163,8 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
         }
 
         if (id == R.id.action_cart_product) {
+            addFragmentBackStack(R.id.container_drawer, new MyCartFragment(), MyCartFragment.CLASS_NAME);
+            Toast.makeText(getContext(), "action_search Fragment", Toast.LENGTH_SHORT).show();
             return true;
         }
 

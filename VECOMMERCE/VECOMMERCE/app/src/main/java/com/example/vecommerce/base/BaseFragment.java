@@ -1,11 +1,9 @@
 package com.example.vecommerce.base;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -13,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
-import android.view.inputmethod.InputMethodManager;
 
+import com.example.vecommerce.R;
 import com.example.vecommerce.contants.KeyboardUtils;
 
 
@@ -56,7 +54,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public void replaceAddBackStack(int id, Fragment fragment, String tag) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(id, fragment);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right);
         transaction.addToBackStack(tag);
         transaction.commit();
     }
@@ -64,14 +62,14 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public void replaceFragment(int id, Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(id, fragment);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right);
         transaction.commit();
     }
 
     public void addFragmentBackStack(int id, Fragment fragment, String tag) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.add(id, fragment);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right);
         transaction.addToBackStack(tag);
         transaction.commit();
     }
@@ -79,7 +77,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public void addFragment(int id, Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(id, fragment);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right);
         transaction.commit();
     }
 
@@ -87,7 +85,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
         fragment.setArguments(bundle);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(id, fragment);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right);
         transaction.commit();
     }
 
@@ -97,10 +95,10 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
 
     public static void enableDisableView(View view, boolean enabled) {
         view.setEnabled(enabled);
-        if ( view instanceof ViewGroup ) {
-            ViewGroup group = (ViewGroup)view;
+        if (view instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) view;
 
-            for ( int idx = 0 ; idx < group.getChildCount() ; idx++ ) {
+            for (int idx = 0; idx < group.getChildCount(); idx++) {
                 enableDisableView(group.getChildAt(idx), enabled);
             }
         }
@@ -115,7 +113,8 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public void setOtoconFragmentListener(BaseFragmentListener baseFragmentListener) {
         this.baseFragmentListener = baseFragmentListener;
     }
-    public void callParentMethod(){
+
+    public void callParentMethod() {
         getActivity().onBackPressed();
     }
 }
