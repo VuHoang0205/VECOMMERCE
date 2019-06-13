@@ -54,7 +54,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public void replaceAddBackStack(int id, Fragment fragment, String tag) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(id, fragment);
-        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right);
+        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
         transaction.addToBackStack(tag);
         transaction.commit();
     }
@@ -62,14 +62,14 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public void replaceFragment(int id, Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(id, fragment);
-        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right);
+        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
         transaction.commit();
     }
 
     public void addFragmentBackStack(int id, Fragment fragment, String tag) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.add(id, fragment);
-        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right);
+        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
         transaction.addToBackStack(tag);
         transaction.commit();
     }
@@ -77,7 +77,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public void addFragment(int id, Fragment fragment) {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(id, fragment);
-        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right);
+        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
         transaction.commit();
     }
 
@@ -85,7 +85,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
         fragment.setArguments(bundle);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(id, fragment);
-        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right);
+        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
         transaction.commit();
     }
 

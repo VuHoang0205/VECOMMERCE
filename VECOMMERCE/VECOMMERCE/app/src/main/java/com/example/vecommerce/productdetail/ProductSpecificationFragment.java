@@ -1,8 +1,11 @@
 package com.example.vecommerce.productdetail;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.vecommerce.R;
@@ -28,7 +31,25 @@ public class ProductSpecificationFragment extends BaseFragment<FragmentProductSp
         specificationAdapter = new SpecificationAdapter(specificationModels);
         recyclerView.setAdapter(specificationAdapter);
 
+        Log.e("vu", "data: " + specificationAdapter.getItemCount());
+
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.e("vu", "onActivityCreated: " + specificationAdapter.getItemCount());
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.e("vu", "onStart: " + specificationAdapter.getItemCount());
+
+    }
+
+
 
     @Override
     protected void onClickAction() {

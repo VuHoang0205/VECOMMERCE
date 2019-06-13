@@ -2,19 +2,19 @@ package com.example.vecommerce.productdetail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.example.vecommerce.R;
 import com.example.vecommerce.base.BaseFragment;
 import com.example.vecommerce.databinding.FragmentProductDescriptionBinding;
+import com.example.vecommerce.databinding.FragmentProductDescriptionTempBinding;
 
-public class ProductDescriptionFragment extends BaseFragment<FragmentProductDescriptionBinding> {
+public class ProductTempFragment extends BaseFragment<FragmentProductDescriptionTempBinding> {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e(">>>>>>", "onCreate ProductDescriptionFragment");
+
     }
 
     @Override
@@ -28,12 +28,12 @@ public class ProductDescriptionFragment extends BaseFragment<FragmentProductDesc
     }
 
     @Override
-    public void onCreateView(FragmentProductDescriptionBinding viewDataBinding) {
+    public void onCreateView(FragmentProductDescriptionTempBinding viewDataBinding) {
 
     }
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.fragment_product_description;
+        return R.layout.fragment_product_description_temp;
     }
 }

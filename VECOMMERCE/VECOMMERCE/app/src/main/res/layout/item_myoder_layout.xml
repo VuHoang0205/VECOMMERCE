@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:background="@color/white"
+    android:elevation="3dp"
+    android:paddingBottom="16dp">
+
+    <ImageView
+        android:id="@+id/product_image_myoder"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/image_xoami"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title_order"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:maxLines="1"
+        android:text="Xoami 8 Lite"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/product_image_myoder" />
+
+    <ImageView
+        android:id="@+id/indicator_order"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@drawable/ic_circle"
+        app:layout_constraintBottom_toBottomOf="@id/tv_bonus_order"
+        app:layout_constraintEnd_toStartOf="@id/tv_bonus_order"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_order"
+        app:layout_constraintTop_toTopOf="@id/tv_bonus_order" />
+
+    <TextView
+        android:id="@+id/tv_bonus_order"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:text="free 2 component"
+        android:textColor="@color/xam"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/indicator_order"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_order" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/iron"
+        app:layout_constraintTop_toBottomOf="@+id/product_image_myoder" />
+
+    <TextView
+        android:id="@+id/your_rating_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/your_ratings"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view" />
+
+    <LinearLayout
+        android:id="@+id/rating_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/your_rating_order">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_ranking"
+            android:tint="#bebebe" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_ranking"
+            android:tint="#bebebe" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_ranking"
+            android:tint="#bebebe" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_ranking"
+            android:tint="#bebebe" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_ranking"
+            android:tint="#bebebe" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

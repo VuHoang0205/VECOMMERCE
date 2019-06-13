@@ -7,4 +7,6 @@ public class KeyUtils {
     public static final String USER = "User";
     public static final int SIGN_UP_FRAGMENT = 1;
     public static final int FORGOT_FRAGMENT = 2;
+    public static final int ORDER_DETAIL_FRAGMENT = 1;
+    public static final String CANNEL = "Canneled";
 }

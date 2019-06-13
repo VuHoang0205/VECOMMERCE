@@ -57,10 +57,12 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
         setHasOptionsMenu(true);
 
         productImageAdapter = new ProductImageAdapter(imageList);
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(productImageAdapter);
         viewPagerIndicator.setupWithViewPager(viewPager, true);
 
-        viewPagerDetail.setAdapter(new ProductDetailAdapter(getFragmentManager()));
+        // Neu trong fragment su dung viewpager thi phai dung getChildFragmentManager
+        viewPagerDetail.setAdapter(new ProductDetailAdapter(getChildFragmentManager()));
         tabDetail.setupWithViewPager(viewPagerDetail);
         viewPagerDetail.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabDetail));
         tabDetail.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

@@ -55,11 +55,10 @@ public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Log.e(">>>>", "getItemViewType: " + i + " type: " + specificationModels.get(i).getType());
         switch (getItemViewType(i)) {
             case ProductSpecificationModel.SPECIFICATION_TITLE:
                 viewHolder.setTitle(specificationModels.get(i).getTitle());
-                Log.e(">>>>", "getItemViewType: " + specificationModels.get(i).getTitle());
+
                 break;
             case ProductSpecificationModel.SPECIFICATION_BODY:
                 ProductSpecificationModel specificationModel = specificationModels.get(i);

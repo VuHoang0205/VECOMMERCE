@@ -45,7 +45,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             String productPrice = cartModel.getProductPrice();
             String cuttedPrice = cartModel.getCuttedPrice();
             int offerApllied = cartModel.getOffersApplies();
-            ((ViewHolderCartItem) viewHolder).setItemDetail(res, title, feeCoupen, productPrice, cuttedPrice, offerApllied);
+            ((ViewHolderCartItem) viewHolder).setItemDetail(res, title, feeCoupen, productPrice, cuttedPrice, offerApllied, cartModel.getQuantity());
         } else {
             String totalItems = cartModel.getTotalItem();
             String totalPrice = cartModel.getProductTitle();
@@ -101,9 +101,10 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         }
 
-        private void setItemDetail(int res, String title, int feeCoupen, String mProductPrice, String mCuttedPrice, int mOffersAplies) {
+        private void setItemDetail(int res, String title, int feeCoupen, String mProductPrice, String mCuttedPrice, int mOffersAplies, int quantity) {
             productImage.setImageResource(res);
             productTitle.setText(title);
+            productQuantity.setText(String.valueOf(quantity));
             if (feeCoupen > 0) {
                 feeCouponicon.setVisibility(View.VISIBLE);
                 freeCoupens.setVisibility(View.VISIBLE);

@@ -9,7 +9,7 @@
             android:icon="@drawable/ic_mall"
             android:title="@string/menu_mall" />
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/my_order"
             android:icon="@drawable/ic_icon_bag"
             android:title="@string/menu_oders" />
         <item

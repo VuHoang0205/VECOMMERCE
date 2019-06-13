@@ -2,6 +2,7 @@ package com.example.vecommerce.view;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.support.v4.view.GravityCompat;
@@ -13,11 +14,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.vecommerce.R;
 import com.example.vecommerce.home.HomeFragment;
 import com.example.vecommerce.mycart.MyCartFragment;
+import com.example.vecommerce.myorder.MyOrderFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +29,7 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private int isQuit = 0;
+    private ImageView actionbarLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        actionbarLogo = findViewById(R.id.action_barLogo);
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -51,37 +57,27 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         // add fragment
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.container_main, new HomeFragment())
-                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right).commit();
-
+        setFragment(new HomeFragment(), HOME_FRAGMENT, HomeFragment.CLASS_NAME);
     }
 
     @Override
     public void onBackPressed() {
-        isQuit++;
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (isQuit == 2) {
-                super.onBackPressed();
-            } else {
-                Toast.makeText(this, "Vui lòng bấm Back một lần nữa để thoát!", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        isQuit = 0;
-                    }
-                }, 3000);
-            }
+            super.onBackPressed();
+
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        if (currentfragment == HOME_FRAGMENT) {
+            getMenuInflater().inflate(R.menu.main, menu);
+
+        }
         return true;
     }
 
@@ -103,13 +99,10 @@ public class MainActivity extends AppCompatActivity
         }
         if (id == R.id.action_cart) {
             // add fragment
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.container_drawer, new MyCartFragment())
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    .addToBackStack(MyCartFragment.CLASS_NAME).commit();
+//            navigateTo(new MyCartFragment(), MyCartFragment.CLASS_NAME);
+            navigateTo(new MyCartFragment(), "My Card", CART_FRAGMENT, MyCartFragment.CLASS_NAME);
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }
@@ -121,15 +114,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.nav_mall) {
             // Handle the camera action
-        } else if (id == R.id.nav_home) {
+            actionbarLogo.setVisibility(View.VISIBLE);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            invalidateOptionsMenu();
+            setFragment(new HomeFragment(), HOME_FRAGMENT, HomeFragment.CLASS_NAME);
+        } else if (id == R.id.my_order) {
+            navigateTo(new MyOrderFragment(), "My Order", ORDER_FRAGMENT, MyOrderFragment.CLASS_NAME);
 
         } else if (id == R.id.nav_reward) {
 
         } else if (id == R.id.nav_cart) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.container_drawer, new MyCartFragment())
-                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
-                    .addToBackStack(MyCartFragment.CLASS_NAME).commit();
+            navigateTo(new MyCartFragment(), "My Card", CART_FRAGMENT, MyCartFragment.CLASS_NAME);
 
         } else if (id == R.id.nav_wishlist) {
 
@@ -142,4 +137,37 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
+    private static final int HOME_FRAGMENT = 0;
+    private static final int CART_FRAGMENT = 1;
+    private static final int ORDER_FRAGMENT = 3;
+    private static int currentfragment = -1;
+
+    private void navigateTo(Fragment fragment, String title, int fragmentNo, String TAG) {
+        invalidateOptionsMenu();
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle(title);
+        actionbarLogo.setVisibility(View.GONE);
+        setFragment(fragment, fragmentNo, TAG);
+//        if (currentfragment == CART_FRAGMENT) {
+//            navigationView.getMenu().getItem(3).setChecked(true);
+//        }
+
+    }
+
+    private void setFragment(Fragment fragment, int fragmentNo, String TAG) {
+        if (fragmentNo != currentfragment) {
+            currentfragment = fragmentNo;
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            if (fragment instanceof HomeFragment) {
+                transaction.replace(R.id.container_main, fragment)
+                        .setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
+            } else {
+                transaction.replace(R.id.container_main, fragment)
+                        .addToBackStack(TAG)
+                        .setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
+            }
+
+        }
+    }
 }

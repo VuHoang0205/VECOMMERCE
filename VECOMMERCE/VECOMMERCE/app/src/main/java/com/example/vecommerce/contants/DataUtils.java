@@ -6,6 +6,7 @@ import com.example.vecommerce.adapter.ProductHorizontalModel;
 import com.example.vecommerce.adapter.SliderModel;
 import com.example.vecommerce.adapter.productdetail.ProductSpecificationModel;
 import com.example.vecommerce.model.CartModel;
+import com.example.vecommerce.model.MyOrderModel;
 import com.example.vecommerce.productdetail.ProductSpecificationFragment;
 
 import java.util.ArrayList;
@@ -73,6 +74,19 @@ public class DataUtils {
                 productList.add(new CartModel(1, "Price (3 item)", "RS 169999/-", "Free", "Rs 5999/-"));
             } else {
                 productList.add(new CartModel(0, R.drawable.image_xoami, "Xoami 8 Lite", 2, "Rs 49999/-", "Rs 59999/-", 1, 0, 0));
+            }
+        }
+        return productList;
+    }
+
+    public static List<MyOrderModel> getMyorderModel() {
+        List<MyOrderModel> productList = new ArrayList<>();
+        for (int i = 1; i < 16; i++) {
+            if (i % 5 == 0) {
+                productList.add(new MyOrderModel(R.drawable.image_xoami, 3, "Xoami 8 Lite", KeyUtils.CANNEL));
+
+            } else {
+                productList.add(new MyOrderModel(R.drawable.image_xoami, 4, "Xoami 8 Lite", "Delivered on Mon, 28th JAN 2013"));
             }
         }
         return productList;

@@ -28,7 +28,7 @@
     <string name="action_search">Search</string>
 
 
-    <string name="menu_mall">My Mall</string>
+    <string name="menu_mall">Home</string>
     <string name="menu_oders">My Oders</string>
     <string name="menu_rewards">My Rewards</string>
     <string name="menu_cart">My Cart</string>
@@ -43,5 +43,8 @@
     <string name="view_all">View All</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="your_ratings">Your Ratings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

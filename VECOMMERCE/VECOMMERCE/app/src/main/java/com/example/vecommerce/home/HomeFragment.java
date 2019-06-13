@@ -64,6 +64,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onInitComponents() {
+        setHasOptionsMenu(true);
         recyclerView = getView().findViewById(R.id.recyclerCategory);
         viewPager = getView().findViewById(R.id.viewPager);
         recyclerViewHorizontal = getView().findViewById(R.id.rcvHorizontal);
@@ -188,7 +189,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
 
     @Override
     public void onClickItem(Bundle bundle) {
-       replaceAddBackStack(R.id.container_drawer, new ProductdetailFragment(), HomeFragment.CLASS_NAME);
+       addFragmentBackStack(R.id.container_drawer, new ProductdetailFragment(), HomeFragment.CLASS_NAME);
 //        startActivity(new Intent(getActivity(), Main2Activity.class));
     }
 }
