@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -29,7 +30,7 @@ public class MyCartFragment extends BaseFragment<FragmentMyCartBinding> {
 
     @Override
     protected void onInitComponents() {
-
+        Log.e(">>>>", "size: " + getActivity().getSupportFragmentManager().getFragments().size());
         recyclerView = getView().findViewById(R.id.recyclerCart);
         cartAdapter = new CartAdapter(cartModelList);
         recyclerView.setAdapter(cartAdapter);

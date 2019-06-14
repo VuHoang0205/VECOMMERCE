@@ -3,6 +3,7 @@ package com.example.vecommerce.view;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.support.v4.view.GravityCompat;
@@ -23,13 +24,15 @@ import com.example.vecommerce.home.HomeFragment;
 import com.example.vecommerce.mycart.MyCartFragment;
 import com.example.vecommerce.myorder.MyOrderFragment;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private int isQuit = 0;
     private ImageView actionbarLogo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +42,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         actionbarLogo = findViewById(R.id.action_barLogo);
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -57,7 +53,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         // add fragment
-        setFragment(new HomeFragment(), HOME_FRAGMENT, HomeFragment.CLASS_NAME);
+        currentfragment = HOME_FRAGMENT;
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container_main, new HomeFragment())
+                .setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
     }
 
     @Override
@@ -66,8 +65,19 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
 
+            List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+            if (fragmentList.size() > 1) {
+                actionbarLogo.setVisibility(View.GONE);
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                Toast.makeText(this, "fragmentList.size() > 1", Toast.LENGTH_SHORT).show();
+            } else {
+                currentfragment = HOME_FRAGMENT;
+                actionbarLogo.setVisibility(View.VISIBLE);
+                getSupportActionBar().setDisplayShowTitleEnabled(false);
+                Toast.makeText(this, "fragmentList == 1", Toast.LENGTH_SHORT).show();
+            }
+            super.onBackPressed();
         }
     }
 
@@ -160,14 +170,12 @@ public class MainActivity extends AppCompatActivity
             currentfragment = fragmentNo;
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             if (fragment instanceof HomeFragment) {
-                transaction.replace(R.id.container_main, fragment)
-                        .setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
+                transaction.replace(R.id.container_main, fragment).setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
             } else {
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 transaction.replace(R.id.container_main, fragment)
-                        .addToBackStack(TAG)
-                        .setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
+                        .addToBackStack(TAG).setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
             }
-
         }
     }
 }

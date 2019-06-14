@@ -9,12 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vecommerce.R;
+import com.example.vecommerce.base.BaseFragment;
 
 import java.util.List;
 
 public class ProductHorizontalAdapter extends RecyclerView.Adapter<ProductHorizontalAdapter.ViewHolder> {
 
     List<ProductHorizontalModel> products;
+
+    private BaseFragment.BaseFragmentListener listener;
 
     public ProductHorizontalAdapter(List<ProductHorizontalModel> products) {
         this.products = products;
@@ -35,6 +38,18 @@ public class ProductHorizontalAdapter extends RecyclerView.Adapter<ProductHorizo
         viewHolder.description.setText(product.getProductDescription());
         viewHolder.price.setText(product.getProductPrice());
 
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if(listener!=null){
+                   listener.onHandlerReult(1,null);
+               }
+            }
+        });
+    }
+
+    public void setListener(BaseFragment.BaseFragmentListener listener) {
+        this.listener = listener;
     }
 
     @Override

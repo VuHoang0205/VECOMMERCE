@@ -24,13 +24,15 @@ import com.example.vecommerce.adapter.productdetail.ProductImageAdapter;
 import com.example.vecommerce.base.BaseFragment;
 import com.example.vecommerce.contants.DataUtils;
 import com.example.vecommerce.databinding.FragmentProductDetailBinding;
+import com.example.vecommerce.home.HomeFragment;
 import com.example.vecommerce.mycart.MyCartFragment;
 
 import java.util.List;
 
 public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBinding> {
 
-    private Toolbar toolbar;
+    public static final String CLASS_NAME = ProductdetailFragment.class.getSimpleName();
+
     private ViewPager viewPager;
     private TabLayout viewPagerIndicator;
     private List<Integer> imageList = DataUtils.getImageList();
@@ -43,7 +45,10 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
 
     @Override
     protected void onInitComponents() {
-        toolbar = getView().findViewById(R.id.toolbarProduct);
+
+        Log.e(">>>>", "size: " + getActivity().getSupportFragmentManager().getFragments().size());
+
+
         viewPager = getView().findViewById(R.id.viewPagerProduct);
         viewPagerIndicator = getView().findViewById(R.id.viewpager_indicator);
         btnLike = getView().findViewById(R.id.btnLike);
@@ -51,7 +56,6 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
         tabDetail = getView().findViewById(R.id.tabDescription);
         linearLayout = getView().findViewById(R.id.linearLayoutRating);
 
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
         setHasOptionsMenu(true);
@@ -109,12 +113,6 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
     @Override
     protected void onClickAction() {
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackStack();
-            }
-        });
 
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,7 +163,7 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
         }
 
         if (id == R.id.action_cart_product) {
-            addFragmentBackStack(R.id.container_drawer, new MyCartFragment(), MyCartFragment.CLASS_NAME);
+//            addFragmentBackStack(R.id.container_drawer, new MyCartFragment(), MyCartFragment.CLASS_NAME);
             Toast.makeText(getContext(), "action_search Fragment", Toast.LENGTH_SHORT).show();
             return true;
         }
