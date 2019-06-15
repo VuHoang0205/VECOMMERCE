@@ -21,7 +21,7 @@ import java.util.List;
 
 public class MyCartFragment extends BaseFragment<FragmentMyCartBinding> {
 
-    public static final String CLASS_NAME = HomeFragment.class.getSimpleName();
+    public static final String CLASS_NAME = MyCartFragment.class.getSimpleName();
 
 
     private RecyclerView recyclerView;

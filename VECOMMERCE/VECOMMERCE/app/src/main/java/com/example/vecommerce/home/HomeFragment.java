@@ -1,7 +1,6 @@
 package com.example.vecommerce.home;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,7 +26,8 @@ import com.example.vecommerce.adapter.SliderModel;
 import com.example.vecommerce.base.BaseFragment;
 import com.example.vecommerce.contants.DataUtils;
 import com.example.vecommerce.databinding.FragmentHomeBinding;
-import com.example.vecommerce.view.CategoryActivity;
+import com.example.vecommerce.productdetail.ProductdetailFragment;
+import com.example.vecommerce.view.CategoryFragment;
 
 
 import java.util.List;
@@ -190,6 +190,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> implements I
 
     @Override
     public void onClickItem(Bundle bundle) {
-        startActivity(new Intent(getActivity(), CategoryActivity.class));
+       addFragmentBackStack(R.id.container_drawer, new CategoryFragment(), CategoryFragment.CLASS_NAME);
+//        startActivity(new Intent(getActivity(), Main2Activity.class));
     }
 }

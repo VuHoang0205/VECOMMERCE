@@ -33,6 +33,7 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
 
     public static final String CLASS_NAME = ProductdetailFragment.class.getSimpleName();
 
+    private Toolbar toolbar;
     private ViewPager viewPager;
     private TabLayout viewPagerIndicator;
     private List<Integer> imageList = DataUtils.getImageList();
@@ -43,12 +44,14 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
     private TabLayout tabDetail;
     private LinearLayout linearLayout;
 
+    private ImageView ivBack;
+
     @Override
     protected void onInitComponents() {
 
         Log.e(">>>>", "size: " + getActivity().getSupportFragmentManager().getFragments().size());
-
-
+        toolbar = getView().findViewById(R.id.toolbarProduct);
+        ivBack = getView().findViewById(R.id.ivBack);
         viewPager = getView().findViewById(R.id.viewPagerProduct);
         viewPagerIndicator = getView().findViewById(R.id.viewpager_indicator);
         btnLike = getView().findViewById(R.id.btnLike);
@@ -56,9 +59,9 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
         tabDetail = getView().findViewById(R.id.tabDescription);
         linearLayout = getView().findViewById(R.id.linearLayoutRating);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         setHasOptionsMenu(true);
+        toolbar.inflateMenu(R.menu.main_product_detail);
 
         productImageAdapter = new ProductImageAdapter(imageList);
         viewPager.setOffscreenPageLimit(3);
@@ -113,7 +116,12 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
     @Override
     protected void onClickAction() {
 
-
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackStack();
+            }
+        });
         btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,13 +150,6 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.clear();
-        inflater.inflate(R.menu.main_product_detail, menu);
-    }
-
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -158,7 +159,7 @@ public class ProductdetailFragment extends BaseFragment<FragmentProductDetailBin
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search_product) {
             Toast.makeText(getContext(), "action_search Fragment", Toast.LENGTH_SHORT).show();
-            Log.e(">>>>>", "action_search");
+
             return true;
         }
 

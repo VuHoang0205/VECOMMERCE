@@ -26,7 +26,7 @@ import java.util.List;
 
 public class MyOrderFragment extends BaseFragment<FragmentMyOrderBinding> implements BaseFragment.BaseFragmentListener {
 
-    public static final String CLASS_NAME = HomeFragment.class.getSimpleName();
+    public static final String CLASS_NAME = MyOrderFragment.class.getSimpleName();
 
 
     private RecyclerView recyclerView;

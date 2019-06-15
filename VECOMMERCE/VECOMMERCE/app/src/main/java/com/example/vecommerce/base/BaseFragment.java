@@ -84,7 +84,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public void addFragment(int id, Fragment fragment, Bundle bundle) {
         fragment.setArguments(bundle);
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(id, fragment);
+        transaction.add(id, fragment);
         transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
         transaction.commit();
     }

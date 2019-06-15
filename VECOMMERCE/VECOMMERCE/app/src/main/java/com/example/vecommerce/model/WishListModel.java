@@ -8,19 +8,21 @@ public class WishListModel {
     private int feeCoupen;
     private String rating;
     private int totalRating;
+    private String productPrice;
     private String cuttedPrice;
     private String paymentPrice;
 
     public WishListModel() {
     }
 
-    public WishListModel(int productImage, String productTitle, String deliveryStatus, int feeCoupen, String rating, int totalRating, String cuttedPrice, String paymentPrice) {
+    public WishListModel(int productImage, String productTitle, String deliveryStatus, int feeCoupen, String rating, int totalRating, String productPrice, String cuttedPrice, String paymentPrice) {
         this.productImage = productImage;
         this.productTitle = productTitle;
         this.deliveryStatus = deliveryStatus;
         this.feeCoupen = feeCoupen;
         this.rating = rating;
         this.totalRating = totalRating;
+        this.productPrice = productPrice;
         this.cuttedPrice = cuttedPrice;
         this.paymentPrice = paymentPrice;
     }
@@ -87,5 +89,13 @@ public class WishListModel {
 
     public void setPaymentPrice(String paymentPrice) {
         this.paymentPrice = paymentPrice;
+    }
+
+    public String getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
     }
 }

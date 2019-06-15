@@ -35,7 +35,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Viewho
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_myoder_layout, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_wishlist_layout, viewGroup, false);
         return new Viewholder(view);
     }
 
@@ -45,14 +45,15 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Viewho
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder viewholder, int i) {
-//        MyOrderModel orderModel = wishListModels.get(i);
-//        viewholder.setData(orderModel.getProductImage(), orderModel.getProductTitle(), orderModel.getDeliveryStatus(), orderModel.getRating());
-//        viewholder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                listener.onHandlerReult(ORDER_DETAIL_FRAGMENT, null);
-//            }
-//        });
+        WishListModel wishListModel = wishListModels.get(i);
+        viewholder.setData(wishListModel.getProductImage(), wishListModel.getProductTitle(), wishListModel.getFeeCoupen(), wishListModel.getRating(), wishListModel.getTotalRating()
+                , wishListModel.getPaymentPrice(), wishListModel.getCuttedPrice(), wishListModel.getPaymentPrice());
+        viewholder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onHandlerReult(ORDER_DETAIL_FRAGMENT, null);
+            }
+        });
     }
 
     @Override
@@ -66,6 +67,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Viewho
         private TextView productTitle;
         private TextView feeCoupen;
         private ImageView coupenIcon;
+        private TextView pointRating;
         private TextView totalRatings;
         private TextView productPrice;
         private TextView cuttedPrice;
@@ -84,7 +86,29 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.Viewho
             cuttedPrice = itemView.findViewById(R.id.wish_list_price_cutted);
             paymentMethod = itemView.findViewById(R.id.wish_list_payment_method);
             delete = itemView.findViewById(R.id.wish_list_delete);
+            pointRating = itemView.findViewById(R.id.point_rating_wishlit);
 
+        }
+
+        private void setData(int res, String title, int feeCoupenNo, String evergaRate, int totalRating, String price, String cuttedPirce, String payment) {
+            productImage.setImageResource(res);
+            productTitle.setText(title);
+            if (feeCoupenNo != 0) {
+                coupenIcon.setVisibility(View.VISIBLE);
+                if (feeCoupenNo == 1) {
+                    feeCoupen.setText("free " + feeCoupenNo + " coupen");
+                } else {
+                    feeCoupen.setText("free " + feeCoupenNo + " coupens");
+                }
+            } else {
+                coupenIcon.setVisibility(View.GONE);
+                feeCoupen.setVisibility(View.GONE);
+            }
+            pointRating.setText(evergaRate);
+            totalRatings.setText(totalRating + "(rating)");
+            productPrice.setText(price);
+            cuttedPrice.setText(cuttedPirce);
+            paymentMethod.setText(payment);
         }
     }
 }

@@ -9,7 +9,7 @@ import com.example.vecommerce.home.HomeFragment;
 
 public class OrderDetailFragment extends BaseFragment<FragmentOrderDetailBinding> {
 
-    public static final String CLASS_NAME = HomeFragment.class.getSimpleName();
+    public static final String CLASS_NAME = OrderDetailFragment.class.getSimpleName();
 
     @Override
     protected void onInitComponents() {

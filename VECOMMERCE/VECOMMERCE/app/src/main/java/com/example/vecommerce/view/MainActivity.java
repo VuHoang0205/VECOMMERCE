@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         // add fragment
         currentfragment = HOME_FRAGMENT;
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container_main, new HomeFragment())
+        transaction.add(R.id.container_main, new HomeFragment())
                 .setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
     }
 
@@ -65,17 +65,12 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-
+            // If the fragment exists and has some back-stack entry
             List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
-            if (fragmentList.size() > 1) {
-                actionbarLogo.setVisibility(View.GONE);
-                getSupportActionBar().setDisplayShowTitleEnabled(true);
-                Toast.makeText(this, "fragmentList.size() > 1", Toast.LENGTH_SHORT).show();
-            } else {
+            if (fragmentList.size() == 1) {
                 currentfragment = HOME_FRAGMENT;
                 actionbarLogo.setVisibility(View.VISIBLE);
                 getSupportActionBar().setDisplayShowTitleEnabled(false);
-                Toast.makeText(this, "fragmentList == 1", Toast.LENGTH_SHORT).show();
             }
             super.onBackPressed();
         }
@@ -159,23 +154,24 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setTitle(title);
         actionbarLogo.setVisibility(View.GONE);
         setFragment(fragment, fragmentNo, TAG);
-//        if (currentfragment == CART_FRAGMENT) {
-//            navigationView.getMenu().getItem(3).setChecked(true);
-//        }
 
     }
 
     private void setFragment(Fragment fragment, int fragmentNo, String TAG) {
+        Log.e("MainActivity", "size: getSupportFragmentManager " + getSupportFragmentManager().getFragments().size());
+        Log.e("MainActivity", "size: getBackStackEntryCount " + getSupportFragmentManager().getBackStackEntryCount());
         if (fragmentNo != currentfragment) {
             currentfragment = fragmentNo;
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             if (fragment instanceof HomeFragment) {
-                transaction.replace(R.id.container_main, fragment).setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
+                transaction.add(R.id.container_main, fragment).setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
             } else {
                 getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 transaction.replace(R.id.container_main, fragment)
-                        .addToBackStack(TAG).setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
+                        .addToBackStack(TAG)
+                        .setCustomAnimations(R.anim.fade_in, R.anim.fade_out).commit();
             }
         }
+
     }
 }

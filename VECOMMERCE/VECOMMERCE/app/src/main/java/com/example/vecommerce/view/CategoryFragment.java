@@ -1,55 +1,50 @@
 package com.example.vecommerce.view;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
 
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
 import com.example.vecommerce.R;
-import com.example.vecommerce.adapter.Categoies;
-import com.example.vecommerce.adapter.CategorieAdapter;
+
 import com.example.vecommerce.adapter.GridProductAdapter;
 import com.example.vecommerce.adapter.IRecyclerviewItemOnlick;
 import com.example.vecommerce.adapter.ProductHorizontalAdapter;
 import com.example.vecommerce.adapter.ProductHorizontalModel;
 import com.example.vecommerce.adapter.SliderAdapter;
 import com.example.vecommerce.adapter.SliderModel;
+
 import com.example.vecommerce.base.BaseFragment;
 import com.example.vecommerce.contants.DataUtils;
-import com.example.vecommerce.home.HomeFragment;
-import com.example.vecommerce.mycart.MyCartFragment;
-import com.example.vecommerce.myorder.MyOrderFragment;
+import com.example.vecommerce.databinding.FragmentCategoryBinding;
 import com.example.vecommerce.productdetail.ProductdetailFragment;
 
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class CategoryActivity extends AppCompatActivity implements BaseFragment.BaseFragmentListener {
+public class CategoryFragment extends BaseFragment<FragmentCategoryBinding> implements BaseFragment.BaseFragmentListener {
 
+    public static final String CLASS_NAME = CategoryFragment.class.getSimpleName();
+
+    private Toolbar toolbar;
     private RecyclerView recyclerViewHorizontal;
     private ProductHorizontalAdapter productHorizontalAdapter;
     private List<ProductHorizontalModel> productList = DataUtils.getProductList();
@@ -68,36 +63,27 @@ public class CategoryActivity extends AppCompatActivity implements BaseFragment.
 
     private ConstraintLayout tripLayout;
     private ImageView tripImage;
-
-    private Toolbar toolbar;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category);
-        onInitComponents();
-        onClickAction();
-
-    }
+    private ImageView ivBack;
 
     @SuppressLint("ClickableViewAccessibility")
+    @Override
     protected void onInitComponents() {
 
-        toolbar = findViewById(R.id.mToolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setHasOptionsMenu(true);
+        toolbar = getView().findViewById(R.id.mToolbar);
+        toolbar.inflateMenu(R.menu.fragment_category);
 
-        viewPager = findViewById(R.id.viewPager);
-        recyclerViewHorizontal = findViewById(R.id.rcvHorizontal);
-        gridRecyclerView = findViewById(R.id.grid_product);
+        ivBack = getView().findViewById(R.id.ivBack);
+        viewPager = getView().findViewById(R.id.viewPager);
+        recyclerViewHorizontal = getView().findViewById(R.id.rcvHorizontal);
+        gridRecyclerView = getView().findViewById(R.id.grid_product);
 
         // Trip
-        tripImage = findViewById(R.id.trip_image);
-        tripLayout = findViewById(R.id.mtrip_layout);
+        tripImage = getView().findViewById(R.id.trip_image);
+        tripLayout = getView().findViewById(R.id.mtrip_layout);
 
 
-        recyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewHorizontal.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         productHorizontalAdapter = new ProductHorizontalAdapter(productList);
         productHorizontalAdapter.setListener(this);
         recyclerViewHorizontal.setAdapter(productHorizontalAdapter);
@@ -110,7 +96,7 @@ public class CategoryActivity extends AppCompatActivity implements BaseFragment.
         tripLayout.setBackgroundColor(Color.BLACK);
 
         // grid
-        gridRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        gridRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         gridProductAdapter = new GridProductAdapter(productGridList);
         gridProductAdapter.setListener(this);
         gridRecyclerView.setAdapter(gridProductAdapter);
@@ -157,14 +143,24 @@ public class CategoryActivity extends AppCompatActivity implements BaseFragment.
         });
     }
 
-
-    private void onClickAction() {
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+    @Override
+    protected void onClickAction() {
+        ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackStack();
             }
         });
+    }
+
+    @Override
+    public void onCreateView(FragmentCategoryBinding viewDataBinding) {
+
+    }
+
+    @Override
+    protected int getLayoutRes() {
+        return R.layout.fragment_category;
     }
 
     private void pageLooper() {
@@ -204,28 +200,20 @@ public class CategoryActivity extends AppCompatActivity implements BaseFragment.
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_category, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onContextItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_search_product) {
-
+        if (id == R.id.action_search_category) {
+            Toast.makeText(getContext(), "action_search_category", Toast.LENGTH_SHORT).show();
+            Log.e(CategoryFragment.CLASS_NAME, "onOptionsItemSelected");
             return true;
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
-    private void addFragment(Fragment fragment, String tag) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.cotainer_category, fragment).addToBackStack(tag).commit();
-    }
 
     @Override
     public void onHandlerReult(int status, Bundle extras) {
-        addFragment(new ProductdetailFragment(), ProductdetailFragment.CLASS_NAME);
+        addFragmentBackStack(R.id.container_drawer, new ProductdetailFragment(), ProductdetailFragment.CLASS_NAME);
+
     }
 }
