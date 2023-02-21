@@ -7,6 +7,8 @@ public interface ForgotContact {
 
     interface ForgotView {
 
+
+        
         void onShowProgress(boolean isShow);
 
         void onSuccess();
